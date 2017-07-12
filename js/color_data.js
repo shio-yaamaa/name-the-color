@@ -1,4 +1,4 @@
-let tradJpnColors = [
+var tradJpnColors = [
   {'name': '鴇色', 'r': 244, 'g': 179, 'b': 194},
   {'name': '薄柿', 'r': 212, 'g': 172, 'b': 173},
   {'name': '聴色・許色', 'r': 225, 'g': 169, 'b': 171},
@@ -714,7 +714,7 @@ let tradJpnColors = [
   {'name': '濡羽色', 'r': 0, 'g': 11, 'b': 0}
 ];
 
-let jpnColors = [
+var jpnColors = [
   {'name': '石竹色', 'r': 249, 'g': 193, 'b': 207},
   {'name': '薄紅梅', 'r': 246, 'g': 186, 'b': 188},
   {'name': '退紅・褪紅', 'r': 226, 'g': 174, 'b': 168},
@@ -1093,7 +1093,7 @@ let jpnColors = [
   {'name': '濡烏', 'r': 0, 'g': 11, 'b': 0}
 ];
 
-let engColors = [
+var engColors = [
   {'name': 'Cherry blossom pink', 'r': 255, 'g': 183, 'b': 197},
   {'name': 'Pink', 'r': 255, 'g': 192, 'b': 203},
   {'name': 'Bubble gum', 'r': 255, 'g': 193, 'b': 204},

@@ -8,25 +8,25 @@
 
 document.getElementsByTagName('header')[0].style.backgroundColor = 'skyblue';
 
-let uploadArea = document.getElementById('upload_area');
-let fileInput = document.getElementById('file_input');
-let validateError = document.getElementById('upload_validate_error');
-let uploadedImage = document.getElementById('uploaded_image');
-let canvas = document.getElementById('canvas');
-let colorList = document.getElementById('color_list');
+var uploadArea = document.getElementById('upload_area');
+var fileInput = document.getElementById('file_input');
+var validateError = document.getElementById('upload_validate_error');
+var uploadedImage = document.getElementById('uploaded_image');
+var canvas = document.getElementById('canvas');
+var colorList = document.getElementById('color_list');
 
 console.log(uploadArea)
 console.log(canvas);
 
 // for updating color_info
-let color = document.getElementById('color');
-let hex_p = document.getElementById('hex');
-let rgb_p = [document.getElementById('r'), document.getElementById('g'), document.getElementById('b')];
+var color = document.getElementById('color');
+var hex_p = document.getElementById('hex');
+var rgb_p = [document.getElementById('r'), document.getElementById('g'), document.getElementById('b')];
 
-let pixelsData = null;
+var pixelsData = null;
 
 // window.innerWidthはスマホでは普通に小さい？
-let imageWidth = Math.min(window.innerWidth, 400);
+var imageWidth = Math.min(window.innerWidth, 400);
 window.addEventListener('resize', function(){
   console.log('window resized');
   imageWidth = Math.min(window.innerWidth, 400);
@@ -50,7 +50,7 @@ uploadArea.addEventListener('drop', function(event) {
 });
 fileInput.addEventListener('change', function(event) {
   document.getElementsByTagName('header')[0].style.backgroundColor = 'orange';
-  let file = validateFiles(this.files);
+  var file = validateFiles(this.files);
   if (file) {
     displayImage(file);
   }
@@ -62,13 +62,13 @@ canvas.addEventListener('click', function(event) {
   rgbAtPixel = getRgbAtPixel(canvas, pixelsData, x, y);
   color.style.display = 'block';
   colorList.style.display = 'block';
-  for (let i = 0; i < 3; i++) {
+  for (var i = 0; i < 3; i++) {
     document.getElementsByClassName('single_color_list').item(i).style.display = 'flex';
   }
   updateColor(rgb2hex(rgbAtPixel), rgbAtPixel);
 });
 
-let validateFiles = function(files) {
+var validateFiles = function(files) {
   if (!files || files.length === 0) {
     return false;
   }
@@ -84,7 +84,7 @@ let validateFiles = function(files) {
   return files[0];
 };
 
-let toggleValidateError = function(show, message) {
+var toggleValidateError = function(show, message) {
   if (show) {
     validateError.style.display = 'block';
     validateError.innerHTML = message;
@@ -93,20 +93,20 @@ let toggleValidateError = function(show, message) {
   }
 };
 
-let displayImage = function(file) {
-  let fileReader = new FileReader();
+var displayImage = function(file) {
+  var fileReader = new FileReader();
   fileReader.readAsDataURL(file);
   fileReader.onload = function () {
-    let image = new Image();
+    var image = new Image();
     image.onload = function() {
       uploadedImage.style.display = 'block';
       document.getElementsByTagName('header')[0].style.backgroundColor = 'green';
       
-      let context = canvas.getContext('2d');
-      let isLandscape = this.width >= this.height;
+      var context = canvas.getContext('2d');
+      var isLandscape = this.width >= this.height;
       canvas.width = imageWidth;
       canvas.height = isLandscape ? this.height * (canvas.width / this.width) : 400;
-      let scale = isLandscape ? canvas.width / this.width : canvas.height / this.height;
+      var scale = isLandscape ? canvas.width / this.width : canvas.height / this.height;
       // drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)
       if (isLandscape) {
         context.drawImage(this, 0, 0, this.width, this.height, 0, 0, canvas.width, canvas.height);
@@ -119,7 +119,7 @@ let displayImage = function(file) {
   };
 };
 
-let getRgbAtPixel = function(canvas, pixelsData, x, y) {
+var getRgbAtPixel = function(canvas, pixelsData, x, y) {
   var alpha, base, ref;
   ref = [Math.round(x), Math.round(y)], x = ref[0], y = ref[1];
   base = (canvas.width * y + x) * 4;
@@ -127,7 +127,7 @@ let getRgbAtPixel = function(canvas, pixelsData, x, y) {
   return [pixelsData[base + 0] + (255 - alpha), pixelsData[base + 1] + (255 - alpha), pixelsData[base + 2] + (255 - alpha)];
 };
 
-let updateColor = function(hex, rgb) {
+var updateColor = function(hex, rgb) {
   color.style.backgroundColor = '#' + hex;
   color.style.color = getLuminance(rgb) > 0.6 ? 'black' : 'white';
   hex_p.innerHTML = '#' + (hex.toUpperCase());

@@ -1,4 +1,4 @@
-let hex2rgb = function(hex) {
+var hex2rgb = function(hex) {
   var i, j, rgb;
   rgb = [];
   for (i = j = 0; j < 3; i = ++j) {
@@ -7,18 +7,18 @@ let hex2rgb = function(hex) {
   return rgb;
 };
 
-let rgb2hex = function(rgb) {
+var rgb2hex = function(rgb) {
   return rgb.reduce((function(sum, element) {
     return sum + (element < 16 ? "0" + (element.toString(16)) : element.toString(16));
   }), '');
 };
 
 // to determine the font color according to the background luminance
-let getLuminance = function(rgb) {
+var getLuminance = function(rgb) {
   return (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]) / 255;
 };
 
-let rgb2hsl = function(rgb) {
+var rgb2hsl = function(rgb) {
   var delta, h, l, max, min, s;
   rgb = rgb.map(function(element) {
     return parseFloat(element) / 255;
@@ -66,8 +66,8 @@ function toLinear(rgb) {
 }
 
 function rgb2xyz(rgb) {
-  let xyz = [-1, -1, -1];
-  let m = [
+  var xyz = [-1, -1, -1];
+  var m = [
     [0.4124, 0.3576, 0.1805],
     [0.2126, 0.7152, 0.0722],
     [0.0193, 0.0192, 0.9505]
@@ -79,7 +79,7 @@ function rgb2xyz(rgb) {
 }
 
 function scaleXyz(xyz) {
-  let scaledXyz = [-1, -1, -1];
+  var scaledXyz = [-1, -1, -1];
   [95.047, 100.000, 108.883].forEach(function (element, index) {
     scaledXyz[index] = xyz[index] / element;
   });
@@ -87,7 +87,7 @@ function scaleXyz(xyz) {
 }
 
 function xyz2lab(xyz) {
-  let f = function (t) {
+  var f = function (t) {
     if (t > 0.0089) {
       return Math.pow(t, 1.0 / 3);
     } else {

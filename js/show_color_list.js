@@ -14,13 +14,13 @@ function showColorList(rgb) {
 
 function showSingleColorList(rgb, colorArray, containerId) {
   console.log(containerId);
-  let colors = getColorList(rgb, colorArray);
+  var colors = getColorList(rgb, colorArray);
   console.log(colors);
-  let container = document.getElementById(containerId);
+  var container = document.getElementById(containerId);
   
   colors.forEach(function (color, index) {
-    let frame = container.getElementsByClassName('single_color_container')[index];
-    let hex = rgb2hex([color['r'], color['g'], color['b']]);
+    var frame = container.getElementsByClassName('single_color_container')[index];
+    var hex = rgb2hex([color['r'], color['g'], color['b']]);
     frame.getElementsByClassName('color_list_preview')[0].style.backgroundColor = '#' + hex;
     frame.getElementsByClassName('color_list_name')[0].innerHTML = color['name'];
     frame.getElementsByClassName('color_list_hex')[0].innerHTML = '#' + hex.toUpperCase();
@@ -32,15 +32,15 @@ function showSingleColorList(rgb, colorArray, containerId) {
 }
 
 function getColorList(rgb, colorArray) {
-  let candidates = [null, null, null];
-  let candidateDifferences = [-1, -1, -1];
+  var candidates = [null, null, null];
+  var candidateDifferences = [-1, -1, -1];
   colorArray.forEach(function (colorInList, colorIndex) {
-    let labOfColorInList = rgb2lab([colorInList['r'], colorInList['g'], colorInList['b']]);
-    let labOfColor = rgb2lab(rgb);
-    let difference = Math.pow(labOfColorInList[0] - labOfColor[0], 2)
+    var labOfColorInList = rgb2lab([colorInList['r'], colorInList['g'], colorInList['b']]);
+    var labOfColor = rgb2lab(rgb);
+    var difference = Math.pow(labOfColorInList[0] - labOfColor[0], 2)
       + Math.pow(labOfColorInList[1] - labOfColor[1], 2)
       + Math.pow(labOfColorInList[2] - labOfColor[2], 2);
-    for (let i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
       if (candidates[i] == null || difference < candidateDifferences[i]) {
         candidates[i] = colorInList;
         candidateDifferences[i] = difference;
