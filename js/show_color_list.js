@@ -16,18 +16,18 @@ function showSingleColorList(rgb, colorArray, containerId) {
   console.log(containerId);
   let colors = getColorList(rgb, colorArray);
   console.log(colors);
-  let container = $('#' + containerId);
+  let container = document.getElementById(containerId);
   
   colors.forEach(function (color, index) {
-    let frame = $(container).children().eq(index);
+    let frame = container.getElementsByClassName('single_color_container')[index];
     let hex = rgb2hex([color['r'], color['g'], color['b']]);
-    $(frame).find('.color_list_preview').css('background-color', '#' + hex);
-    $(frame).find('.color_list_name').text(color['name']);
-    $(frame).find('.color_list_hex').text('#' + hex.toUpperCase());
+    frame.getElementsByClassName('color_list_preview')[0].style.backgroundColor = '#' + hex;
+    frame.getElementsByClassName('color_list_name')[0].innerHTML = color['name'];
+    frame.getElementsByClassName('color_list_hex')[0].innerHTML = '#' + hex.toUpperCase();
     
-    $(frame).find('.color_list_r').text(color['r']);
-    $(frame).find('.color_list_g').text(color['g']);
-    $(frame).find('.color_list_b').text(color['b']);
+    frame.getElementsByClassName('color_list_r')[0].innerHTML = color['r'];
+    frame.getElementsByClassName('color_list_g')[0].innerHTML = color['g'];
+    frame.getElementsByClassName('color_list_b')[0].innerHTML = color['b'];
   });
 }
 

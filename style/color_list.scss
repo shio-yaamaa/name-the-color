@@ -9,7 +9,7 @@
   }
 }
 
-#trad_jpn_color_list > div, #jpn_color_list > div, #eng_color_list > div {
+.single_color_container {
   padding-left: 30px;
   padding-right: 30px;
   @media (max-width: 600px) {

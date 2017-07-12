@@ -1,3 +1,5 @@
 - work in iPhone?
 - github
 - blog
+- 
+- cannot drag in

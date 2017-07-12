@@ -6,58 +6,65 @@
 
 /* global showColorList */
 
-let uploadArea = $('#upload_area');
-let fileInput = $('#file_input');
-let validateError = $('#upload_validate_error');
-let uploadedImage = $('#uploaded_image');
-let canvas = $('#canvas')[0];
-let colorList = $('#color_list');
+document.getElementsByTagName('header')[0].style.backgroundColor = 'skyblue';
 
-console.log(canvas[0]);
+let uploadArea = document.getElementById('upload_area');
+let fileInput = document.getElementById('file_input');
+let validateError = document.getElementById('upload_validate_error');
+let uploadedImage = document.getElementById('uploaded_image');
+let canvas = document.getElementById('canvas');
+let colorList = document.getElementById('color_list');
+
+console.log(uploadArea)
+console.log(canvas);
 
 // for updating color_info
-let color = $('#color');
-let hex_p = color.find('#hex');
-let rgb_p = [color.find('#r'), color.find('#g'), color.find('#b')];
+let color = document.getElementById('color');
+let hex_p = document.getElementById('hex');
+let rgb_p = [document.getElementById('r'), document.getElementById('g'), document.getElementById('b')];
 
 let pixelsData = null;
 
-// $(window).width()はスマホでは普通に小さい
-let imageWidth = Math.min($(window).width(), 400);
-$(window).on('resize', function(){
-  imageWidth = Math.min($(window).width(), 400);
+// window.innerWidthはスマホでは普通に小さい？
+let imageWidth = Math.min(window.innerWidth, 400);
+window.addEventListener('resize', function(){
+  console.log('window resized');
+  imageWidth = Math.min(window.innerWidth, 400);
 });
 
-uploadArea.on('dragover', function(event) {
+uploadArea.addEventListener('dragover', function(event) {
   event.preventDefault();
-  $(this).addClass('dragover');
-}).on('dragleave', function(event) {
+  this.classList.add('dragover');
+});
+uploadArea.addEventListener('dragleave', function(event) {
   event.preventDefault();
-  $(this).removeClass('dragover');
-}).on('drop', function(event) {
+  this.classList.remove('dragover');
+});
+uploadArea.addEventListener('drop', function(event) {
   var file = validateFiles(event.originalEvent.dataTransfer.files);
   event.preventDefault();
-  $(this).removeClass('dragover');
+  this.classList.remove('dragover');
   if (file) {
     displayImage(file);
   }
 });
-fileInput.on('change', function(event) {
+fileInput.addEventListener('change', function(event) {
+  document.getElementsByTagName('header')[0].style.backgroundColor = 'orange';
   let file = validateFiles(this.files);
   if (file) {
     displayImage(file);
   }
 });
-$(canvas).on('click', function(event) {
+canvas.addEventListener('click', function(event) {
   var rect, ref, rgbAtPixel, x, y;
   rect = event.target.getBoundingClientRect();
   ref = [event.clientX - rect.left, event.clientY - rect.top], x = ref[0], y = ref[1];
   rgbAtPixel = getRgbAtPixel(canvas, pixelsData, x, y);
-  color.css('display', 'block');
-  colorList.css('display', 'block');
-  colorList.children().each(function (index, element) {
-    $(element).css('display', 'flex');
-  });
+  color.style.display = 'block';
+  colorList.style.display = 'block';
+  for (let i = 0; i < 3; i++) {
+    document.getElementsByClassName('single_color_list').item(i).style.display = 'flex';
+  }
   updateColor(rgb2hex(rgbAtPixel), rgbAtPixel);
 });
 
@@ -79,9 +86,10 @@ let validateFiles = function(files) {
 
 let toggleValidateError = function(show, message) {
   if (show) {
-    validateError.css('display', 'block').html(message);
+    validateError.style.display = 'block';
+    validateError.innerHTML = message;
   } else {
-    validateError.css('display', 'none');
+    validateError.style.display = 'none';
   }
 };
 
@@ -91,8 +99,8 @@ let displayImage = function(file) {
   fileReader.onload = function () {
     let image = new Image();
     image.onload = function() {
-      $(uploadedImage).css('display', 'block');
-      $('#upload_area').append($('<p></p>').text('画像を読み込もうとしています'));
+      uploadedImage.style.display = 'block';
+      document.getElementsByTagName('header')[0].style.backgroundColor = 'green';
       
       let context = canvas.getContext('2d');
       let isLandscape = this.width >= this.height;
@@ -103,7 +111,7 @@ let displayImage = function(file) {
       if (isLandscape) {
         context.drawImage(this, 0, 0, this.width, this.height, 0, 0, canvas.width, canvas.height);
       } else {
-        context.drawImage(this, 0, 0, this.width, this.height, isLandscape ? 0 : (canvas.width - this.width * scale) / 2, isLandscape ? (canvas.height - this.height * scale) / 2 : 0, isLandscape ? canvas.width : this.width * scale, isLandscape ? this.height * scale : canvas.height);
+        context.drawImage(this, 0, 0, this.width, this.height, (canvas.width - this.width * scale) / 2, 0, this.width * scale, canvas.height);
       }
       pixelsData = context.getImageData(0, 0, canvas.width, canvas.height).data;
     };
@@ -120,12 +128,11 @@ let getRgbAtPixel = function(canvas, pixelsData, x, y) {
 };
 
 let updateColor = function(hex, rgb) {
-  color.css('background-color', "#" + hex);
-  console.log(getLuminance(rgb));
-  color.css('color', getLuminance(rgb) > 0.6 ? 'black' : 'white');
-  hex_p.text("#" + (hex.toUpperCase()));
+  color.style.backgroundColor = '#' + hex;
+  color.style.color = getLuminance(rgb) > 0.6 ? 'black' : 'white';
+  hex_p.innerHTML = '#' + (hex.toUpperCase());
   rgb_p.forEach(function (element, index) {
-    $(element).text(rgb[index]);
+    element.innerHTML = rgb[index];
   });
   
   showColorList(rgb);
