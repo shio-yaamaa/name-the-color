@@ -6,17 +6,12 @@
 
 /* global showColorList */
 
-document.getElementsByTagName('header')[0].style.backgroundColor = 'skyblue';
-
 var uploadArea = document.getElementById('upload_area');
 var fileInput = document.getElementById('file_input');
 var validateError = document.getElementById('upload_validate_error');
 var uploadedImage = document.getElementById('uploaded_image');
 var canvas = document.getElementById('canvas');
 var colorList = document.getElementById('color_list');
-
-console.log(uploadArea)
-console.log(canvas);
 
 // for updating color_info
 var color = document.getElementById('color');
@@ -25,8 +20,8 @@ var rgb_p = [document.getElementById('r'), document.getElementById('g'), documen
 
 var pixelsData = null;
 
-// window.innerWidthはスマホでは普通に小さい？
-var imageWidth = Math.min(window.innerWidth, 400);
+// window.innerWidthはAndroidでは普通やけどiOSで大きいっぽい。iOSではscreen.widthが普通やけどデスクトップPCやとでかい。
+var imageWidth = Math.min(Math.min(window.innerWidth, screen.width), 400);
 window.addEventListener('resize', function(){
   console.log('window resized');
   imageWidth = Math.min(window.innerWidth, 400);
@@ -41,15 +36,14 @@ uploadArea.addEventListener('dragleave', function(event) {
   this.classList.remove('dragover');
 });
 uploadArea.addEventListener('drop', function(event) {
-  var file = validateFiles(event.originalEvent.dataTransfer.files);
   event.preventDefault();
   this.classList.remove('dragover');
+  var file = validateFiles(event.dataTransfer.files);
   if (file) {
     displayImage(file);
   }
 });
 fileInput.addEventListener('change', function(event) {
-  document.getElementsByTagName('header')[0].style.backgroundColor = 'orange';
   var file = validateFiles(this.files);
   if (file) {
     displayImage(file);
@@ -100,7 +94,6 @@ var displayImage = function(file) {
     var image = new Image();
     image.onload = function() {
       uploadedImage.style.display = 'block';
-      document.getElementsByTagName('header')[0].style.backgroundColor = 'green';
       
       var context = canvas.getContext('2d');
       var isLandscape = this.width >= this.height;

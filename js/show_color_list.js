@@ -13,9 +13,7 @@ function showColorList(rgb) {
 }
 
 function showSingleColorList(rgb, colorArray, containerId) {
-  console.log(containerId);
   var colors = getColorList(rgb, colorArray);
-  console.log(colors);
   var container = document.getElementById(containerId);
   
   colors.forEach(function (color, index) {
