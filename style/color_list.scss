@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#color_list {
+  display: none;
+  margin-top: 8px;
+  p {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
+}
+
+#trad_jpn_color_list > div, #jpn_color_list > div, #eng_color_list > div {
+  padding-left: 30px;
+  padding-right: 30px;
+  @media (max-width: 600px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  &:not(:first-child) {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+.color_list_preview {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.color_list_hex, .color_list_rgb {
+  font-size: 0.8rem;
+}

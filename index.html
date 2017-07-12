@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>画像から色名を調べる</title>
+    
+    <link href="/style/normalize.css" rel="stylesheet">
+    <link href="/style/common.css" rel="stylesheet">
+    <link href="/style/upload_area.css" rel="stylesheet">
+    <link href="/style/uploaded_image.css" rel="stylesheet">
+    <link href="/style/color_list.css" rel="stylesheet">
+  </head>
+  
+  <body>
+    <header>
+      <h1>画像から色名を調べる</h1>
+    </header>
+    
+    <article>
+    	<h2>使い方</h2>
+    	<ol>
+    		<li>画像ファイルを選択する</li>
+    		<li>色を調べたい場所をクリックまたはタップする</li>
+    		<li>下に近似色の色名が表示される</li>
+    	</ol>
+    	
+    	<div id="upload_area">
+				<p>ここに画像ファイルをドラッグ</p>
+				<p>または</p>
+				<label for="file_input">
+					ファイルを選択
+					<input id="file_input" type="file" name="image" accept="image/*">
+				</label>
+				<p id="upload_validate_error"></p>
+			</div>
+			
+			<div id="uploaded_image">
+				<p>色を採取したい場所をクリックしてください。</p>
+				
+				<canvas id="canvas"></canvas>
+				
+				<div id="color">
+					<p id="hex"></p>
+					<p>RGB (<span id="r"></span>,<span id="g"></span>,<span id="b"></span>)</p>
+				</div>
+			</div>
+			
+			<div id="color_list">
+				<h2 id="color_list_title">和の色名</h2>
+				<div id="trad_jpn_color_list">
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+				</div>
+				
+				<h2 id="color_list_title">日本語の色名</h2>
+				<div id="jpn_color_list">
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+				</div>
+				
+				<h2 id="color_list_title">英語の色名</h2>
+				<div id="eng_color_list">
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+					<div>
+						<div class="color_list_preview"></div>
+						<p class="color_list_name"></p>
+						<p class="color_list_hex"></p>
+						<p class="color_list_rgb">(<span class="color_list_r"></span>,<span class="color_list_g"></span>,<span class="color_list_b"></span>)</p>
+					</div>
+				</div>
+			</div>
+    </article>
+    
+    <!--<footer>
+			<ul>
+				<li>色は、<a href="http://irononamae.web.fc2.com/index.html">色の名前と色見本</a>から取らせていただきました。和の色名は<a href="http://minagi.p-kit.com/page74767.html">日本の伝統色(きものと悉皆みなぎ)</a>を、日本語の色名は<a href="https://ja.wikipedia.org/wiki/%E8%89%B2%E5%90%8D%E4%B8%80%E8%A6%A7">色名一覧(Wikipedia)</a>を、英語の色名は<a href="https://en.wikipedia.org/wiki/Lists_of_colors">Lists of colors(Wikipedia)</a>を参照しています。</li>
+				<li>画像がサーバーに送信されることはありません。</li>
+				<li>1px分の色しか取っていないので、ムラがあります。</li>
+			</ul>
+			<p id="twitter_account"><a href="https://twitter.com/yaa_maa_520">@yaa_maa_520</a></p>
+    </footer>-->
+    
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/color_data.js"></script>
+    <script src="/js/calc_color.js"></script>
+    <script src="/js/upload_file.js"></script>
+    <script src="/js/show_color_list.js"></script>
+  </body>
+</html>

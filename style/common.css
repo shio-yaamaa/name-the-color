@@ -1,0 +1,44 @@
+header, article, footer {
+  width: 70%;
+  margin: auto; }
+  @media (max-width: 600px) {
+    header, article, footer {
+      width: 100%; } }
+
+header {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1); }
+
+footer {
+  margin-top: 2rem;
+  border-top: solid 1px rgba(0, 0, 0, 0.1); }
+
+h1, h2 {
+  margin-left: 0.5rem; }
+
+h1 {
+  font-size: 1.4rem; }
+  @media (max-width: 300px) {
+    h1 {
+      font-size: 1.2rem; } }
+
+h2 {
+  font-size: 1.2rem; }
+
+a {
+  color: #1e88e5;
+  text-decoration: none; }
+
+ol {
+  padding-left: 2rem; }
+
+ul {
+  margin-left: 0.5rem;
+  padding-left: 0;
+  list-style-type: none; }
+  ul li:not(:first-child) {
+    margin-top: 0.4rem; }
+
+#twitter_account {
+  margin-left: 0.5rem; }
+
+/*# sourceMappingURL=common.css.map */

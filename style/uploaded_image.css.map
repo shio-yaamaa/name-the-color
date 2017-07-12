@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,eAAgB;EACd,OAAO,EAAE,IAAI;EAEb,sBAAO;IACL,UAAU,EAAE,gCAAgC;IAC5C,MAAM,EAAE,SAAS;EAGnB,sBAAO;IACL,OAAO,EAAE,IAAI;EAGf,sBAAO;IACL,OAAO,EAAE,IAAI;IAEb,UAAU,EAAE,GAAG;IACf,OAAO,EAAE,IAAI;IAEb,wBAAE;MACA,WAAW,EAAE,MAAM",
+"sources": ["uploaded_image.scss"],
+"names": [],
+"file": "uploaded_image.css"
+}

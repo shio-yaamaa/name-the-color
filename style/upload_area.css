@@ -1,0 +1,25 @@
+#upload_area {
+  padding: 20px 0;
+  text-align: center;
+  border: solid 1px rgba(0, 0, 0, 0.1); }
+  #upload_area.dragover {
+    background-color: rgba(0, 0, 0, 0.3); }
+  #upload_area label {
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    transition: background-color 0.1s;
+    display: inline-block;
+    cursor: pointer; }
+    #upload_area label:focus {
+      background-color: rgba(0, 0, 0, 0.12); }
+    #upload_area label input {
+      display: none; }
+  #upload_area #upload_validate_error {
+    display: none;
+    margin-top: 1rem;
+    color: #c62828; }
+
+/*# sourceMappingURL=upload_area.css.map */

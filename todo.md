@@ -1,0 +1,3 @@
+- work in iPhone?
+- github
+- blog

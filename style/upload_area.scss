@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+$main_color: #8d481c; // 「命がけの復活 負傷した名探偵」より
+$main_color_tint: #e7ac88;
+
+#upload_area {
+  padding: 20px 0;
+  text-align: center;
+  
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  
+  &.dragover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  label {
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.5);
+    
+    padding: 10px;
+    
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+    transition: background-color 0.1s;
+    
+    display: inline-block;
+    cursor: pointer;
+    
+    input {
+      display: none;
+    }
+  }
+  
+  #upload_validate_error {
+    display: none;
+    margin-top: 1rem;
+    color: #c62828; // Red 800
+    //margin: 30px auto 0;
+  }
+}

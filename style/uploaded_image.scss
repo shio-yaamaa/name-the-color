@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#uploaded_image {
+  display: none;
+  
+  canvas {
+    box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.3);
+    cursor: crosshair;
+  }
+  
+  #color {
+    display: none;
+  }
+  
+  #color {
+    display: none;
+    //width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    
+    p {
+      line-height: 1.2rem;
+    }
+  }
+  
+}

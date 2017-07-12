@@ -1,0 +1,15 @@
+#uploaded_image {
+  display: none; }
+  #uploaded_image canvas {
+    box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.3);
+    cursor: crosshair; }
+  #uploaded_image #color {
+    display: none; }
+  #uploaded_image #color {
+    display: none;
+    margin-top: 5px;
+    padding: 10px; }
+    #uploaded_image #color p {
+      line-height: 1.2rem; }
+
+/*# sourceMappingURL=uploaded_image.css.map */
