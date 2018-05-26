@@ -70,7 +70,7 @@ function rgb2xyz(rgb) {
   var m = [
     [0.4124, 0.3576, 0.1805],
     [0.2126, 0.7152, 0.0722],
-    [0.0193, 0.0192, 0.9505]
+    [0.0193, 0.1192, 0.9505]
   ];
   m.forEach(function (mRow, index) {
     xyz[index] = mRow[0] * rgb[0] + mRow[1] * rgb[1] + mRow[2] * rgb[2];
